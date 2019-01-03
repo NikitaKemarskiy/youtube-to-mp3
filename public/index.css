@@ -1,0 +1,72 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	background-color: #eee;
+	height: 100%;
+	width: 100%;
+}
+body {
+	overflow-y: hidden;
+	box-sizing: border-box;
+	min-width: 400px;
+}
+div.search {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0;
+	width: 95%;
+	height: 27px;
+	margin: 0 auto;
+	margin-top: -13.5px;
+	text-align: left;
+	max-width: 840px;
+	min-width: 380px;
+}
+div.search-block {
+	float: left;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	width: 90%;
+	height: 100%;
+	background: none;
+}
+div.search-block input {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	padding-left: 5px;
+	border-radius: 5px;
+	color: #282828;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #222;
+	background-color: #fff;
+}
+div.search-block input.error {
+	border: 2px solid red;
+}
+div.search-button {
+	position: relative;
+	top: -1px;
+	margin-left: 3px;
+	float: left;
+	display: inline-block;
+	background-color: #fff;
+	width: 27px;
+	height: 100%;
+	border-radius: 50%;
+	border: 1px solid #222;
+}
+div.search-button div.search-icon {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: url('img/search.png');
+	background-repeat: no-repeat;
+	background-size: 65%;
+	background-position: center;
+}
