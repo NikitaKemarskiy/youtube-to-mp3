@@ -38,6 +38,10 @@ const functions = {
 	},
 	// Function that builds video preview page
 	buildVideoPreviewPage: function(img, title) {
+		// Return to search page button
+		const returnToSearchButton = document.createElement('div');
+		returnToSearchButton.className = 'return-to-search-button';
+
 		// Main video preview block
 		const videoPreview = document.createElement('div');
 		videoPreview.className = 'video-preview';
@@ -53,6 +57,7 @@ const functions = {
 		videoPreviewButton.className = 'video-preview-button';
 		videoPreviewButton.textContent = 'Download mp3';
 	
+		videoPreview.append(returnToSearchButton);
 		videoPreview.append(videoPreviewImg);
 		videoPreview.append(videoPreviewTitle);
 		videoPreview.append(videoPreviewButton);

@@ -16,6 +16,7 @@ window.onload = function() {
 	let searchInput = document.querySelector('div.search-block input');
 	let searchButton = document.querySelector('div.search-button');
 	let videoPreviewButton = null;
+	let returnToSearchButton = null;
 
 	// Variables
 	let url = null;
@@ -37,9 +38,28 @@ window.onload = function() {
 		},
 		videoPreviewButtonClick: function(event) {
 			if (!!url) { // Current video url is defined
-				ipc.send('downloadVideo', url);
+				const title = document.querySelector('div.video-preview-title').textContent;
+				ipc.send('downloadVideo', {
+					url,
+					title
+				});
 				videoPreviewButton.removeEventListener('click', handlers.videoPreviewButtonClick);
 			}
+		},
+		returnToSearchButtonClick: function(event) {
+			returnToSearchButton.removeEventListener('click', handlers.returnToSearchButtonClick);
+			videoPreviewButton.removeEventListener('click', handlers.videoPreviewButtonClick);
+
+			videoPreviewButton = null;
+			returnToSearchButton = null;
+
+			functions.clearBody();
+			functions.buildSearchPage();
+
+			searchInput = document.querySelector('div.search-block input');
+			searchButton = document.querySelector('div.search-button');
+
+			searchButton.addEventListener('click', handlers.searchButtonClick);
 		}
 	}
 
@@ -55,8 +75,10 @@ window.onload = function() {
 		functions.buildVideoPreviewPage(data.img, data.title);
 	
 		videoPreviewButton = document.querySelector('div.video-preview-button');
+		returnToSearchButton = document.querySelector('div.return-to-search-button');
 
 		videoPreviewButton.addEventListener('click', handlers.videoPreviewButtonClick);
+		returnToSearchButton.addEventListener('click', handlers.returnToSearchButtonClick);
 	});
 	ipc.on('searchUrlError', function() {
 		searchInput.classList.add('error');
