@@ -6,6 +6,9 @@ const electron = require('electron');
 // Handlers
 const ipcHandlers = require(path.join(process.cwd(), 'api', 'ipcHandlers', 'ipcHandlers.js'));
 
+// Constants
+const iconPath = path.join(process.cwd(), 'icons', 'icon.png');
+
 // Electron
 const app = electron.app;
 const ipc = electron.ipcMain;
@@ -20,11 +23,12 @@ const createWindow = function() {
 		height: 700,  
 		frame: true, 
 		show: false,
+		icon: iconPath,
 		title: 'YouTube to mp3' 
 	});
 
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, 'public', 'index.html'),
+		pathname: path.join(process.cwd(), 'public', 'html', 'index.html'),
 		protocol: 'file',
 		slashes: true
 	}));

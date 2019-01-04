@@ -1,6 +1,7 @@
 // Libraries
 const request = require('request');
 const electron = require('electron');
+const youtubedl = require('youtube-dl');
 
 // Functions
 
@@ -15,17 +16,24 @@ const handlers = {
 			url = 'https://www.' + url;
 		}
 		if (url.startsWith('https://www.youtube.com/watch?')) {
-			/*request.get(url, function(error, res, body) {
+			youtubedl.getInfo(url, [], function(error, data) {
 				if (error) {
-					event.sender.send('searchUrlError', 'Error: invalid URL');
+					console.error(`Error: ${error.message}`);
 					dialog.showErrorBox('Error', 'Invalid URL');
-				} else if (!body) {
-					event.sender.send('searchUrlError', 'Error: invalid URL');
-					dialog.showErrorBox('Error', 'Invalid URL');
+					event.sender.send('searchUrlError');
 				} else {
-					console.log(body);
+					const buffer = {
+						img: data.thumbnail,
+						title: data.title,
+						url: data.url
+					}
+					console.dir(buffer);
+					event.sender.send('searchUrlSuccess', buffer);
 				}
-			});*/
+			});
+		} else {
+			dialog.showErrorBox('Error', 'Invalid URL');
+			event.sender.send('searchUrlError');
 		}
 	}
 };
