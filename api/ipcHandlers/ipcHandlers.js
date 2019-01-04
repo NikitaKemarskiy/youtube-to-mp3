@@ -1,10 +1,10 @@
 // Libraries
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const request = require('request');
+const cheerio = require('cheerio');
 const electron = require('electron');
 const youtubedl = require('youtube-dl');
-const cheerio = require('cheerio');
 
 // Electron
 const app = electron.app;
@@ -53,11 +53,17 @@ const handlers = {
 			console.log('Download started');
 			console.log('filename:', info._filename);
 			console.log('size:', info.size);
+			event.sender.send('downloadVideoWait');
 		});
 
 		video.pipe(fs.createWriteStream(downloadPath));
 
 		video.on('end', function() {
+			dialog.showMessageBox(null, {
+				type: 'info',
+				buttons: ['Accept'],
+				message: 'Your audio was downloaded to your download directory'
+			});
 			event.sender.send('downloadVideoSuccess');
 		});
 	}

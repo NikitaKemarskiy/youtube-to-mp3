@@ -80,9 +80,15 @@ window.onload = function() {
 		videoPreviewButton.addEventListener('click', handlers.videoPreviewButtonClick);
 		returnToSearchButton.addEventListener('click', handlers.returnToSearchButtonClick);
 	});
-	ipc.on('searchUrlError', function() {
+	ipc.on('searchUrlError', function(event) {
 		searchInput.classList.add('error');
 		searchButton.addEventListener('click', handlers.searchButtonClick);
 		url = null;
+	});
+	ipc.on('downloadVideoWait', function(event) {
+		functions.addWaitWrapper();
+	});
+	ipc.on('downloadVideoSuccess', function(event) {
+		functions.removeWaitWrapper();
 	});
 }

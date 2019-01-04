@@ -12,8 +12,16 @@ body {
 	min-width: 400px;
 	font-family: Arial, sans-serif;
 }
+div.wait-wrapper {
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.85);
+}
 div.search {
 	position: absolute;
+	z-index: 1;
 	top: 50%;
 	left: 0;
 	right: 0;
@@ -40,6 +48,7 @@ div.return-to-search-button {
 	background: url(../img/return.png);
 }
 div.video-preview {
+	z-index: 1;
 	position: absolute;
 	top: 35%;
 	left: 0;

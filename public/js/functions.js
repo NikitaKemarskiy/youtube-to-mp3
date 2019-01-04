@@ -63,6 +63,21 @@ const functions = {
 		videoPreview.append(videoPreviewButton);
 
 		body.append(videoPreview);
+	},
+	// Function that adds absolute wait wrapper
+	addWaitWrapper: function() {
+		// Wait absolute wrapper
+		const waitWrapper = document.createElement('div');
+		waitWrapper.className = 'wait-wrapper';
+
+		body.append(waitWrapper);
+	},
+	// Function that removes absolute wait wrapper
+	removeWaitWrapper: function() {
+		const waitWrapper = document.querySelector('div.wait-wrapper');
+		if (!!waitWrapper) {
+			waitWrapper.remove();
+		}
 	}
 };
 
