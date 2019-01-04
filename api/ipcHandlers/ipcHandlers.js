@@ -1,11 +1,12 @@
 // Libraries
+const path = require('path');
+const fs = require('fs');
 const request = require('request');
 const electron = require('electron');
 const youtubedl = require('youtube-dl');
 
-// Functions
-
 // Electron
+const app = electron.app;
 const shell = electron.shell;
 const dialog = electron.dialog;
 
@@ -35,6 +36,24 @@ const handlers = {
 			dialog.showErrorBox('Error', 'Invalid URL');
 			event.sender.send('searchUrlError');
 		}
+	},
+	downloadVideo: function(event, url) {
+		const downloadPath = app.getPath('downloads');
+
+		const video = youtubedl(url, ['--format=140'], { cwd: process.cwd() });
+
+		// Will be called when the download starts.
+		video.on('info', function(info) {
+			console.log('Download started');
+			console.log('filename:', info._filename);
+			console.log('size:', info.size);
+		});
+
+		video.pipe(fs.createWriteStream(path.join(downloadPath, 'track.m4a')));
+
+		video.on('end', function() {
+			console.log('Finish');
+		});
 	}
 };
 

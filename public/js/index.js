@@ -17,18 +17,28 @@ window.onload = function() {
 	let searchButton = document.querySelector('div.search-button');
 	let videoPreviewButton = null;
 
+	// Variables
+	let url = null;
+
 	// Listeners
 	const handlers = {
 		searchButtonClick: function(event) {
-			const url = searchInput.value;
-			if (!!url) { // If url is not empty / undefined
+			url = searchInput.value;
+			if (!!url) { // Url isn't empty / undefined
 				ipc.send('searchUrl', url);
 				searchButton.removeEventListener('click', handlers.searchButtonClick);
 				if (searchInput.classList.contains('error')) {
 					searchInput.classList.remove('error');
 				}
 			} else {
+				url = null;
 				searchInput.classList.add('error');
+			}
+		},
+		videoPreviewButtonClick: function(event) {
+			if (!!url) { // Current video url is defined
+				ipc.send('downloadVideo', url);
+				videoPreviewButton.removeEventListener('click', handlers.videoPreviewButtonClick);
 			}
 		}
 	}
@@ -45,9 +55,12 @@ window.onload = function() {
 		functions.buildVideoPreviewPage(data.img, data.title);
 	
 		videoPreviewButton = document.querySelector('div.video-preview-button');
+
+		videoPreviewButton.addEventListener('click', handlers.videoPreviewButtonClick);
 	});
 	ipc.on('searchUrlError', function() {
 		searchInput.classList.add('error');
 		searchButton.addEventListener('click', handlers.searchButtonClick);
+		url = null;
 	});
 }

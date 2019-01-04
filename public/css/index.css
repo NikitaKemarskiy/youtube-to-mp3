@@ -57,6 +57,7 @@ div.video-preview-title {
 	margin-bottom: 10px;
 }
 div.video-preview-button {
+	cursor: pointer;
 	font-size: 16px;
 	font-weight: 700;
 	color: white;
@@ -94,6 +95,7 @@ div.search-block input.error {
 	border: 2px solid red;
 }
 div.search-button {
+	cursor: pointer;
 	position: relative;
 	top: 6px;
 	margin-left: 6px;

@@ -61,3 +61,4 @@ app.on('activate', function() {
 
 // IPC events
 ipc.on('searchUrl', ipcHandlers.searchUrl);
+ipc.on('downloadVideo', ipcHandlers.downloadVideo);
