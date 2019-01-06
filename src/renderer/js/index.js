@@ -4,7 +4,7 @@ window.onload = function() {
 	const electron = require('electron');
 
 	// Functions
-	const functions = require(path.join(process.cwd(), 'public', 'js', 'functions.js'));
+	const functions = require(path.join(__dirname, '..', 'js', 'functions.js'));
 
 	// Initialization
 	functions.buildSearchPage();

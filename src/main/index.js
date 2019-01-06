@@ -4,10 +4,10 @@ const url = require('url');
 const electron = require('electron');
 
 // Handlers
-const ipcHandlers = require(path.join(process.cwd(), 'api', 'ipcHandlers', 'ipcHandlers.js'));
+const ipcHandlers = require(path.join(__dirname, '..', 'api', 'ipcHandlers', 'ipcHandlers.js'));
 
 // Constants
-const icon64x64 = path.join(process.cwd(), 'icons', 'png', '64x64.png');
+const icon64x64 = path.join(__dirname, '..', 'icons', 'png', '64x64.png');
 
 // Electron
 const app = electron.app;
@@ -32,7 +32,7 @@ const createWindow = function() {
 	});
 
 	mainWindow.loadURL(url.format({
-		pathname: path.join(process.cwd(), 'public', 'html', 'index.html'),
+		pathname: path.join(__dirname, '..', 'renderer', 'html', 'index.html'),
 		protocol: 'file',
 		slashes: true
 	}));
