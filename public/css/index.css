@@ -48,20 +48,13 @@ div.return-to-search-button {
 	background: url(../img/return.png);
 }
 div.video-preview {
-	z-index: 1;
-	position: absolute;
-	top: 35%;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 0;
 	width: 95%;
 	height: 530px;
 	margin: 0 auto;
-	margin-top: -145px;
 	text-align: left;
 	max-width: 840px;
 	min-width: 430px;
+	margin-top: 30px;
 }
 img.video-preview-img {
 	width: 100%;

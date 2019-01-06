@@ -1,7 +1,7 @@
 {
   "name": "youtube-to-mp3",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an Electron application, which can convert YouTube video to an mp3 file.",
   "main": "index.js",
   "scripts": {
     "start": "electron ."
@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "electron": "^4.0.0",
     "request": "^2.88.0",
     "youtube-dl": "^1.12.2"
+  },
+  "devDependencies": {
+    "electron": "^4.0.1"
   }
 }
